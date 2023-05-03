@@ -212,7 +212,19 @@ app.post('/login', async (req, res) => {
 //     }
 //   });
 // route for posting a book
+app.get('/userValid' , async (req, res) => {
+    const user = req.cookies.login;
+    console.log(user);
+    if (user){
+        res.sendStatus(200);
+    }
+    else{
+        res.sendStatus(404);
+    }
+})
+
 app.post('/post', async (req, res) => {
+
     console.log(req.body)
     const user = req.cookies.login;
 
