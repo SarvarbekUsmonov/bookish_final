@@ -18,7 +18,7 @@ function Navbar(){
           id="logo-img"
           src={require("../images/photo_2023-04-13 23.51.37.jpeg")}
         />
-        <a className="navbar-brand">Bookish</a>
+        <a className="navbar-brand" href="/">Bookish</a>
         <form className="d-flex mx-auto search" role="search" id="searchFormNavbar">
           <input ref={navBarReact}
             id="search-bar"
