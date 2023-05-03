@@ -4,7 +4,25 @@ import { useNavigate } from "react-router-dom";
 function MainHome(){
   let navigate = useNavigate(); 
   const routeChangePost = () =>{  
-    navigate('/post');
+    fetch('http://localhost:4000/userValid', {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then(response => {
+      console.log(response.status)
+      if (response.status === 200) {
+        navigate('/post')
+    }
+    else{
+      alert("Please login first")
+      navigate('/login')
+    }
+    }
+    )
+    
   }
   const routeChangeAvatar = () =>{  
     navigate('/avatar');

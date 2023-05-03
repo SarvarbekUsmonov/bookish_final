@@ -12,6 +12,7 @@ function Post() {
 
   function post() {
     console.log('getting inside the post function')
+    
     fetch("http://localhost:4000/post", {
       method: "POST",
       headers: {
