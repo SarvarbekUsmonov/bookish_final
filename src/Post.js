@@ -11,6 +11,7 @@ function Post() {
   const refDesc = useRef(null);
 
   function post() {
+    console.log('getting inside the post function')
     fetch("http://localhost:4000/post", {
       method: "POST",
       headers: {
@@ -25,6 +26,8 @@ function Post() {
         image: refImg.current.value,
       }),
     });
+    // redired to home page
+    window.location.href = "/";
   }
 
   function handleSubmit(e) {

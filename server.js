@@ -52,7 +52,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // }))
 
 // connection to the database
-const mongoURL = 'mongodb://127.0.0.1:27017/quizzy';
+const mongoURL = 'mongodb://127.0.0.1:27017/bookish';
 mongoose.connect(mongoURL, { useNewUrlParser: true });
 mongoose.connection.on("connected", () => console.log("Connected to MongoDB"))
 mongoose.connection.on("error", (err) => console.log(err))
@@ -76,6 +76,7 @@ let Users = mongoose.model("Users", usersSchema);
 const booksSchema = new mongoose.Schema({
     title: String,
     author: String,
+    finalRating: Number,
     comments: [String],
     rating: [Number],
     year: Number,
@@ -222,20 +223,37 @@ app.post('/post', async (req, res) => {
     const description = req.body.description;
     const image =req.body.image;
     
-    const book = new Books({title, author, comments: [], rating: [], year, genre, description, image, user});
+    const book = new Books({title, author, finalRating: 0, comments: [], rating: [], year, genre, description, image, user});
+    console.log(book);
+    console.log('saved the book')
     await book.save();
 })
 // 4/24/2023
 // route for getting the book based on the id of the book as a JSON object
-app.get('/viewBookData/:bookId', (req, res) => {
+app.get('/viewBookData/:bookId', async (req, res) => {
     const bookId = req.params.bookId;
-
-    Books.find({_id: bookId }).then((data) => {
-        res.send(JSON.stringify(data));
-    }).catch((err) => {
-        console.log(err);
-        res.send({"data": 'Error'});
-    });
+    const data = await Books.findById(bookId).exec();
+    console.log('book' + data);
+    const rating = data.rating
+    console.log('id' + data._id);
+    console.log("rating " + rating);
+    var finalRating = 0
+    for (let i = 0; i < rating.length; i++) {
+        finalRating += rating[i];
+        console.log(rating[i]);
+    }
+    if (rating.length === 0) {
+        finalRating = 0;
+    }
+    else{
+        finalRating = finalRating / rating.length;
+        finalRating = Math.round(finalRating);
+    }
+    console.log(data.finalRating);
+    data.finalRating = finalRating
+    await data.save();
+    console.log(data.finalRating);
+    res.send(JSON.stringify(data));
 });
 // route for getting the comments based on the id of the book as a list of JSON objects, which contains
 // the avatar of the user, author, rating, comment and comment Id
@@ -322,6 +340,9 @@ app.post('/rateandcomment', async (req, res) => {
         comments.push(newComment._id.toString());
         console.log(comments);
         console.log(bookId)
+        // get the rating of the user for the book and push it inside the rating array for the book
+        book.rating.push(rating);
+        await book.save();
         await Books.updateOne({ _id: bookId}, { $set: { comments: comments } });
         console.log('it reached here');
         res.end();
