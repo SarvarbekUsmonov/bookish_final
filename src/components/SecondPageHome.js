@@ -33,11 +33,11 @@ function SecondPageHome(){
           <div key={index} className="row">
             {chunk.map((book) => (
               <div className="column card mt-4 mx-auto" style={{width: "18rem"}} key={book.id}>
-                <img src={require('../images/Game_of_thrones.webp')} className="card-img-top" alt="book cover"></img>
+                <img src={require('../images/Game_of_thrones.webp')} className="card card-img-top" style={{marginTop: "10px"}} alt="book cover"></img>
                 <div className="card-body">
                   <h5 className="card-title">{book.title}</h5>
-                  <p className="card-text">{book.description}</p>
-                  <a href={`/view?BookID=${book._id}#s`}>View component</a>
+                  <p className="card-text"><em>{book.description}</em></p>
+                  <a href={`/view?BookID=${book._id}#s`} className="btn btn-primary">View component</a>
                 </div>
               </div>
             ))}
