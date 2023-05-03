@@ -4,7 +4,6 @@ function Bookcomments({ bookId }) {
   const [comments, setComments] = useState([]);
 
   const fetchComments = useCallback(async () => {
-    // Replace this URL with the API endpoint you're using to fetch comments
     const response = await fetch(`http://localhost:4000/getCommentInfo/${bookId}`);
     const data = await response.json();
     console.log(data);
@@ -32,7 +31,7 @@ function Bookcomments({ bookId }) {
               <div className="col-md-10">
                 <div className="card-body">
                   <h5 className="card-title">
-                    {comment.authorName}
+                    {comment.author}
                     <button
                       className="btn btn-outline-secondary like-button"
                       style={{ float: 'right' }}
@@ -42,21 +41,11 @@ function Bookcomments({ bookId }) {
                   </h5>
                   <div className="form-group">
                     <div className="">
-                      <span className="star" data-value="1">
-                        <i className="bi bi-star"></i>
-                      </span>
-                      <span className="star" data-value="2">
-                        <i className="bi bi-star"></i>
-                      </span>
-                      <span className="star" data-value="3">
-                        <i className="bi bi-star"></i>
-                      </span>
-                      <span className="star" data-value="4">
-                        <i className="bi bi-star"></i>
-                      </span>
-                      <span className="star" data-value="5">
-                        <i className="bi bi-star"></i>
-                      </span>
+                      {[...Array(5)].map((_, index) => (
+                        <span key={index} className="star" data-value={index + 1}>
+                          <i className={`bi ${index < comment.rating ? "bi-star-fill" : "bi-star"}`}></i>
+                        </span>
+                      ))}
                     </div>
                   </div>
                   <p className="comment-text card-text">

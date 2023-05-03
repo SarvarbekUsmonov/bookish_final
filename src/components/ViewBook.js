@@ -87,6 +87,7 @@ function ViewBook(props) {
               <h5 id="s" className="card-title">{data[0].title}</h5>
               <div className="form-group">
                 <label htmlFor="">Rating</label>
+                {console.log(data)}
                 <div className="">{renderStars(data[0].rating)}</div>
               </div>
               <p className="card-text">{data[0].author}</p>

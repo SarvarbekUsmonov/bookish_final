@@ -246,9 +246,11 @@ app.get('/getCommentInfo/:id', async (req, res) => {
     let commentInfo = [];
     for (let i = 0; i < comments.length; i++) {
         const comment = await Comments.findById(comments[i]).exec();
+        const nameUser = await Users.findById(comment.user).exec();
+        
         commentInfo.push({
-            avatar: comment.user.avatar,
-            author: comment.user.username,
+            // avatar: comment.user.avatar,
+            author: nameUser.username,
             rating: comment.rating,
             comment: comment.comment,
             commentId: comment._id
