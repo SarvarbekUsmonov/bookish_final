@@ -7,8 +7,8 @@ function ContentSearch({books}){
   return(
     <div id="content">
       <nav class="navbar navbar-expand-md sticky-top bg-white border-bottom m-0 py-0">
-        <img class="rounded d-block mx-2" id="logo-img" src={require("../images/photo_2023-04-13 23.51.37.jpeg")}></img>
-        <a class="navbar-brand me-auto">Bookish</a>
+        <a href="/"><img class="rounded d-block mx-2" id="logo-img" src={require("../images/photo_2023-04-13 23.51.37.jpeg")}></img></a>
+        <a class="navbar-brand me-auto" href="/">Bookish</a>
         <img id="pfp-img" src="https://www.shareicon.net/data/512x512/2016/02/22/722964_button_512x512.png" class="rounded mx-4 d-block" alt="user image"></img>
         
       </nav>
