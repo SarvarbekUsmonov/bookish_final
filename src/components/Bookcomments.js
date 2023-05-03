@@ -11,9 +11,16 @@ function Bookcomments({ bookId }) {
   }, [bookId]);
 
   useEffect(() => {
+    // Call fetchComments initially to fetch comments on mount
     fetchComments();
-  }, [fetchComments]);
 
+    // Set an interval to call fetchComments every second
+    const intervalId = setInterval(fetchComments, 1000);
+
+    // Cleanup function to clear interval on unmount
+    return () => clearInterval(intervalId);
+  }, [fetchComments]);
+  
   return (
     <div>
       {comments.map((comment) => (

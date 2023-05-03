@@ -22,6 +22,7 @@ function SignUp(){
             alert('User already exists');
         }
         else{
+            alert('User created');
             window.location.href = '/login';
         }
     }

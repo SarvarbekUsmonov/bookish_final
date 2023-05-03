@@ -4,7 +4,18 @@ import Spinner from "react-spinkit";
 function ViewBook(props) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const renderStars = (rating) => {
+    let stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <i
+          key={i}
+          className={`bi ${i <= rating ? "bi-star-fill" : "bi-star"}`}
+        ></i>
+      );
+    }
+    return stars;
+  }
   useEffect(() => {
     // Simulate an asynchronous operation
     setTimeout(() => {
@@ -16,8 +27,24 @@ function ViewBook(props) {
           console.log(data); // log the fetched data
         })
         .catch((error) => console.error(error));
+      
     }, 1000);
+    setTimeout(() => {
+      fetch(`http://127.0.0.1:4000/viewBookData/${props.BookID}`)
+      .then((response) => response.json())
+      .then((data) => { 
+        setData(data);
+        setLoading(false);
+        renderStars(data.finalRating);
+        console.log(data.finalRating); // log the fetched data
+        })
+     .catch((error) => console.error(error));
+     
+    }, 100);
+
   }, [props.id]);
+  
+  
 
   if (loading) {
     return (
@@ -56,20 +83,11 @@ function ViewBook(props) {
       </div>
       
      );
-  }
+
   
-  const renderStars = (rating) => {
-    let stars = [];
-    for (let i = 1; i <= 5; i++) {
-      stars.push(
-        <i
-          key={i}
-          className={`bi ${i <= rating ? "bi-star-fill" : "bi-star"}`}
-        ></i>
-      );
-    }
-    return stars;
+  
   };
+  
 
   return (
     <div className="container">
@@ -84,19 +102,19 @@ function ViewBook(props) {
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 id="s" className="card-title">{data[0].title}</h5>
+              <h5 id="s" className="card-title">{data.title}</h5>
               <div className="form-group">
                 <label htmlFor="">Rating</label>
                 {console.log(data)}
-                <div className="">{renderStars(data[0].rating)}</div>
+                <div className="">{renderStars(data.rating)}</div>
               </div>
-              <p className="card-text">{data[0].author}</p>
+              <p className="card-text">{data.author}</p>
               <p className="card-text">
-                <q id="book-description-text">{data[0].description}</q>
+                <q id="book-description-text">{data.description}</q>
               </p>
               <p className="card-text">
                 <small className="text-body-secondary">
-                  Published: {data[0].year}
+                  Published: {data.year}
                 </small>
               </p>
               <p className="card-text">
