@@ -13,7 +13,9 @@ function ContentSearch({books}){
         
       </nav>
       {books.map((book, index)=>(
-        <div class="card mb-3 mx-auto my-5" style={{maxWidth: "540px"}}>
+        <div class="card mb-3 mx-auto my-5" style={{maxWidth: "540px", cursor: "pointer"}} onClick={() => {
+          window.location.href = `/view?BookID=${book._id}#s`;
+        }}>
         <div class="row g-0">
           <div class="col-md-4">
             <img src={require("../images/Game_of_thrones.webp")} class="img-fluid rounded-start" alt="..."></img>
