@@ -35,6 +35,10 @@ function Rateandcomment() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ rating: rating, comment: comment, bookId: BookID }),
+    }).then(response =>{
+      if (response.status == 404){
+        window.location.href = '/login';
+      }
     })
     setRating(0);
     commentRef.current.value = '';

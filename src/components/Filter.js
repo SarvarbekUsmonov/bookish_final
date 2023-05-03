@@ -33,7 +33,9 @@ function Filter({ updateBooks }) {
     if (year === "Year") {
       year = false;
     }
-    const url = `http://localhost:4000/filter/${author}/${year}/${genre}/${inputRef.current.value}`;
+    const formattedInput = inputRef.current.value.replaceAll(" ", "_")
+    console.log(formattedInput)
+    const url = `http://localhost:4000/filter/${author}/${year}/${genre}/${formattedInput}`;
     console.log(url)
     fetch(url)
       .then((response) => response.json())
@@ -70,7 +72,7 @@ function Filter({ updateBooks }) {
         <div className="form-group d-flex my-4 mx-2 align-items-center">
           <label className="form-label">Genre:</label>
           <select ref={genreRef} className="form-select w-50 " aria-label="Default select example">
-          <option value="">Select a genre</option>
+          <option value="Genre">Genre</option>
           <option value="Fantasy">Fantasy</option>
           <option value="Romance">Romance</option>
           <option value="Mystery">Mystery</option>

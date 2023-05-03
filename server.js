@@ -294,10 +294,10 @@ app.post('/likeComment', async (req, res) => {
 app.post('/rateandcomment', async (req, res) => {
     try {
         console.log(req.cookies);
-        const userCookie = req.cookies.login.userName;
-        if (!userCookie) {
+        if (!req.cookies.login) {
             return res.status(404).json({ error: 'User not found' });
         }
+        const userCookie = req.cookies.login.userName;
         const user = await Users.findOne({ username: userCookie }).exec();
         console.log(user);
         console.log(user._id.toString());
@@ -407,7 +407,7 @@ app.get('/filter/:author/:year/:genre/:input', async (req, res) => {
     const author = req.params.author;
     const year = req.params.year;
     const genre = req.params.genre;
-    const input = req.params.input;
+    const input = req.params.input.replace("_"," ");
     if (author != "false" && year != "false" && genre != "false") {
         const books = await Books.find({
         $and: [

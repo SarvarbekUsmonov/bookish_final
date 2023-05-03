@@ -1,4 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
+
 function MainHome(){
+  let navigate = useNavigate(); 
+  const routeChangePost = () =>{  
+    navigate('/post');
+  }
+  const routeChangeAvatar = () =>{  
+    navigate('/avatar');
+  }
   return(
     <div id="main" className="row">
       <div id="main-page">
@@ -10,9 +20,18 @@ function MainHome(){
             Tellus elementum sagittis vitae et</p>
         </div>
         <div id="background"><img alt="bacground-img"></img></div>
+        <div id="buttons" className="d-flex justify-content-center align-items-center position-absolute bottom-0 start-50 translate-middle-x">
+          <button className="cssbuttons-io-button mb-5 mr-5" onClick={routeChangePost}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
+            <span>Add Book</span>
+          </button>
+          <button id="avatar" className="mb-5 ml-2" onClick={routeChangeAvatar}>
+            Change Avatar
+          </button>
+        </div>
       </div>
     </div>
   )
 }
 
-export default MainHome
+export default MainHome;
