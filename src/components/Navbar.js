@@ -12,12 +12,12 @@ function Navbar(){
   return (
     <div>
       <nav className="navbar navbar-expand-md sticky-top bg-white m-0 py-0">
-        <img
+        <a href="/"><img
           className="rounded d-block mx-4"
           alt=""
           id="logo-img"
           src={require("../images/photo_2023-04-13 23.51.37.jpeg")}
-        />
+        /></a>
         <a className="navbar-brand" href="/">Bookish</a>
         <form className="d-flex mx-auto search" role="search" id="searchFormNavbar">
           <input ref={navBarReact}
