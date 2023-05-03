@@ -37,6 +37,7 @@ function Rateandcomment() {
       body: JSON.stringify({ rating: rating, comment: comment, bookId: BookID }),
     }).then(response =>{
       if (response.status == 404){
+        alert("You need to Login first");
         window.location.href = '/login';
       }
     })
