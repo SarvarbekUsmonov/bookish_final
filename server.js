@@ -563,9 +563,14 @@ app.post('/update/avatar', async (req, res) => {
 
 // route for getting the avatar of the user
 app.get('/get/avatar', async (req, res) => {
+    if(req.cookies.login != null){
     const username = req.cookies.login.userName;
     const avatar = await Users.findOne({username}).exec();
     res.json({avatar: avatar.avatar});
+} else {
+    res.json({avatar: "https://www.shareicon.net/data/512x512/2016/02/22/722964_button_512x512.png"})
+}
+    
 });
 
 // post to change the password
