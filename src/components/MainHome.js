@@ -2,7 +2,10 @@ import { useNavigate } from "react-router-dom";
 
 
 function MainHome(){
-  let navigate = useNavigate(); 
+  let navigate = useNavigate();
+  const helpLink  = () => {
+    navigate('/helppage')
+  }
   const routeChangePost = () =>{  
     fetch('http://localhost:4000/userValid', {
       method: "GET",
@@ -60,6 +63,11 @@ function MainHome(){
           <button id="avatar" className="mb-5 ml-2" onClick={routeChangeAvatar}>
             Change Avatar
           </button>
+          <button id="avatar" className="mb-5 ml-2" onClick={helpLink}>
+            Help
+          </button>
+
+
         </div>
       </div>
     </div>

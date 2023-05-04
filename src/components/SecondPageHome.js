@@ -49,7 +49,7 @@ function SecondPageHome() {
                     <em>{book.description}</em>
                   </p>
                   <a href={`/view?BookID=${book._id}#s`} className="btn btn-primary">
-                    View component
+                    View book
                   </a>
                 </div>
               </div>
