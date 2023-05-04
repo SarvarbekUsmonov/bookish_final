@@ -27,18 +27,12 @@ app.use("/*.html", authenticate);
 app.use(express.static('public_html'));
 app.use(express.json());
 app.use(cors({
-    origin: 'http://67.205.167.183:3000'
+    origin: 'http://67.205.167.183:3000',
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
   }));
-
-
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://67.205.167.183:3000");
-    res.setHeader("Access-Control-Allow-Origin", "http://67.205.167.183:3000");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.setHeader("Access-Control-Allow-Credentials", "true"); // Add this line
-    next();
-  });
+  
 
 
 app.use(cookieParser());
