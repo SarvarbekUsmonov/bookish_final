@@ -6,7 +6,7 @@ function Bookcomments({ bookId }) {
   const [avatar, setAvatar] = useState('')
 
   const fetchComments = useCallback(async () => {
-    const response = await fetch(`http://localhost:4000/getCommentInfo/${bookId}`);
+    const response = await fetch(`http://67.205.167.183:4000/getCommentInfo/${bookId}`);
     const data = await response.json();
     console.log(data);
     setComments(data);

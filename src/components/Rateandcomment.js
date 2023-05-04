@@ -28,7 +28,7 @@ function Rateandcomment() {
     
 
   async function userCheck(){
-    fetch("http://localhost:4000/rateandcomment", {
+    fetch("http://67.205.167.183:4000/rateandcomment", {
       method: "POST",
       credentials: "include",
       headers: {

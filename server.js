@@ -28,7 +28,7 @@ app.use(express.static('public_html'));
 app.use(express.json());
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Origin", "http://67.205.167.183:3000");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.setHeader("Access-Control-Allow-Credentials", "true"); // Add this line
@@ -613,4 +613,4 @@ app.post('/clear/cookies', (req, res) => {
 });
 
 
-app.listen(port, () => console.log(`Server is running on port http://localhost:${port}`));
+app.listen(port, () => console.log(`Server is running on port http://67.205.167.183:${port}`));
