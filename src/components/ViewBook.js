@@ -99,7 +99,8 @@ function ViewBook(props) {
                   inputImageUrl={data.image}
                   fallbackImageUrl={fallbackImageUrl}
                   className="card card-img-top"
-                  style={{ marginTop: "10px" }}
+                  style={{ marginTop: "10px" }} 
+                  id="changeLeftMargin"
                   alt="book cover"
                 />
           </div>
