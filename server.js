@@ -47,7 +47,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // }))
 
 // connection to the database
-const mongoURL = 'mongodb://67.205.167.183:27017/bookish';
+const mongoURL = 'mongodb://67.205.167.183:27017/bookish2';
 mongoose.connect(mongoURL, { useNewUrlParser: true });
 mongoose.connection.on("connected", () => console.log("Connected to MongoDB"))
 mongoose.connection.on("error", (err) => console.log(err))
