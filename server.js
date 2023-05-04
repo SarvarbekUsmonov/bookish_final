@@ -100,7 +100,7 @@ Akbarali  start*/
 
 
 var sessionKeys = {};
-const period = 3000000;
+const period = 30000000;
 
 // authentication
 function authenticate(req, res, next) {
@@ -185,7 +185,7 @@ app.post('/login', async (req, res) => {
             console.log(sessionId);
             sessionKeys[username] = [sessionId, Date.now()];
             console.log(sessionId);
-            res.cookie("login", { userName: username, sessionID: sessionId }, { maxAge: 3000000, httpOnly : false });
+            res.cookie("login", { userName: username, sessionID: sessionId }, { maxAge: 30000000, httpOnly : false });
             res.end()
         }
     } else {
@@ -276,7 +276,7 @@ app.get('/getCommentInfo/:id', async (req, res) => {
         const nameUser = await Users.findById(comment.user).exec();
         
         commentInfo.push({
-            // avatar: comment.user.avatar,
+            avatar: nameUser.avatar,
             author: nameUser.username,
             rating: comment.rating,
             comment: comment.comment,
@@ -340,6 +340,7 @@ app.post('/rateandcomment', async (req, res) => {
         console.log(bookId);
         // if the user has not commented, then add the comment
         const newComment = new Comments({
+            avatar: 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
             user: userId.toString(),
             rating,
             comment,
@@ -547,14 +548,6 @@ app.get('/filter/:author/:year/:genre/:input', async (req, res) => {
     }
 })
 
-// route for getting all comments of the particular book
-
-app.get('/comments/:bookId', async (req, res) => {
-    const bookId = req.params.bookId;
-    const comments = await Comments.find({book: bookId}).exec();
-    res.send(comments)
-    console.log(comments);
-})
 
 // route for changing the avatr of the user
 app.post('/update/avatar', async (req, res) => {
@@ -572,7 +565,7 @@ app.post('/update/avatar', async (req, res) => {
 app.get('/get/avatar', async (req, res) => {
     const username = req.cookies.login.userName;
     const avatar = await Users.findOne({username}).exec();
-    res.send(avatar.avatar);
+    res.json({avatar: avatar.avatar});
 });
 
 // post to change the password

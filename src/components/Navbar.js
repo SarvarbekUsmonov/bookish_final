@@ -12,7 +12,7 @@ function Navbar() {
   }
 
   useEffect(() => {
-    fetch("http://localhost:3000/get/avatar", {
+    fetch("http://localhost:4000/get/avatar", {
       method: "GET",
       credentials: "include",
       headers: {
@@ -20,7 +20,12 @@ function Navbar() {
       }
     })
       .then((res) => res.json())
-      .then((data) => setAvatar(data.avatar))
+      .then((data) => {
+        console.log('printing avatar ' + avatar); 
+        console.log('printing avatar ' + data.avatar); 
+        setAvatar(data.avatar); 
+        console.log('printing avatar ' + avatar); 
+        console.log(data)})
       .catch((err) => console.log(err));
   }, []);
 
@@ -42,7 +47,7 @@ function Navbar() {
           Bookish
         </a>
         <form
-          className="d-flex mx-auto search"
+          className="d-flex mx-auto search "
           role="search"
           id="searchFormNavbar"
         >

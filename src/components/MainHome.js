@@ -25,7 +25,24 @@ function MainHome(){
     
   }
   const routeChangeAvatar = () =>{  
-    navigate('/avatar');
+    fetch('http://localhost:4000/userValid', {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then(response => {
+      console.log(response.status)
+      if (response.status === 200) {
+        navigate('/avatar')
+    }
+    else{
+      alert("Please login first")
+      navigate('/login')
+    }
+    }
+    )
   }
   return(
     <div id="main" className="row">
