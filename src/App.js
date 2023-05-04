@@ -6,6 +6,7 @@ import Search from "./Search";
 import Post from "./Post";
 import Signup from "./SignUp";
 import ChangeAvatar from "./ChangeAvatar";
+import HelpPage from "./components/HelpPage"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/post" element={<Post />} />
           <Route path="/signup" element={<Signup/>} />
           <Route path="/avatar" element={<ChangeAvatar/>} />
+          <Route path="/helppage" element={<HelpPage/>} />
         </Routes>
       </div>
     </Router>
