@@ -566,7 +566,10 @@ app.get('/get/avatar', async (req, res) => {
     if(req.cookies.login != null){
     const username = req.cookies.login.userName;
     const avatar = await Users.findOne({username}).exec();
-    res.json({avatar: avatar.avatar});
+    if(avatar.avatar != null){
+        res.json({avatar: avatar.avatar});
+    } else {
+    res.json({avatar: "https://www.shareicon.net/data/512x512/2016/02/22/722964_button_512x512.png"})}
 } else {
     res.json({avatar: "https://www.shareicon.net/data/512x512/2016/02/22/722964_button_512x512.png"})
 }
