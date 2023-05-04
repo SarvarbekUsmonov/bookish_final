@@ -19,7 +19,7 @@ function ViewBook(props) {
   useEffect(() => {
     // Simulate an asynchronous operation
     setTimeout(() => {
-      fetch(`http://127.0.0.1:4000/viewBookData/${props.BookID}`)
+      fetch(`http://67.205.167.183:4000/viewBookData/${props.BookID}`)
         .then((response) => response.json())
         .then((data) => {
           setData(data);
@@ -30,7 +30,7 @@ function ViewBook(props) {
       
     }, 1000);
     setTimeout(() => {
-      fetch(`http://127.0.0.1:4000/viewBookData/${props.BookID}`)
+      fetch(`http://67.205.167.183:4000/viewBookData/${props.BookID}`)
       .then((response) => response.json())
       .then((data) => { 
         setData(data);
