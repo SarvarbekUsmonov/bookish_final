@@ -8,7 +8,7 @@ function Login(){
     async function handleLoginAccount(){
         const username = usernameRef.current.value;
         const password = passwordRef.current.value;
-        const response = await fetch('http://localhost:4000/login', {
+        const response = await fetch('http://67.205.167.183:4000/login', {
             method: 'POST',
             credentials: 'include',
             headers: {

@@ -7,7 +7,7 @@ function SecondPageHome() {
 
   useEffect(() => {
     function fetchRecommendedBooks() {
-      fetch("http://localhost:4000/recommended/")
+      fetch("http://67.205.167.183:4000/recommended/")
         .then((response) => response.json())
         .then((data) => setBookList(data))
         .catch((error) => console.log(error));
