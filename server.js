@@ -47,7 +47,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // }))
 
 // connection to the database
-const mongoURL = 'mongodb+srv://nurkhatjumabaev:<A9zsGZy9geNRz9GH>@cluster0.vengoms.mongodb.net/test';
+const mongoURL = 'mongodb+srv://nurkhatjumabaev:A9zsGZy9geNRz9GH@cluster0.vengoms.mongodb.net/test';
 mongoose.connect(mongoURL, { useNewUrlParser: true });
 mongoose.connection.on("connected", () => console.log("Connected to MongoDB"))
 mongoose.connection.on("error", (err) => console.log(err))
