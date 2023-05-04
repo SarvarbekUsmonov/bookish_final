@@ -26,6 +26,7 @@ const port = 4000;
 app.use("/*.html", authenticate);
 app.use(express.static('public_html'));
 app.use(express.json());
+
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
@@ -33,12 +34,7 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Credentials", "true"); // Add this line
     next();
   });
-// app.use(cors({
-//     origin: ['http://localhost:3000'],
-//     methods: ["GET", "POST"],
-//     credentials: true
 
-//   }));
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -248,7 +244,7 @@ app.get('/viewBookData/:bookId', async (req, res) => {
     console.log('book' + data);
     const rating = data.rating
     console.log('id' + data._id);
-    console.log("rating " + rating);
+    console.log("rating " + rating.length);
     var finalRating = 0
     for (let i = 0; i < rating.length; i++) {
         finalRating += rating[i];
@@ -258,10 +254,11 @@ app.get('/viewBookData/:bookId', async (req, res) => {
         finalRating = 0;
     }
     else{
-        finalRating = finalRating / rating.length;
+        console.log(finalRating);
+        finalRating = finalRating / (rating.length);
         finalRating = Math.round(finalRating);
     }
-    console.log(data.finalRating);
+    console.log(finalRating);
     data.finalRating = finalRating
     await data.save();
     console.log(data.finalRating);
@@ -560,11 +557,22 @@ app.get('/comments/:bookId', async (req, res) => {
 })
 
 // route for changing the avatr of the user
-app.post('/update/avatar', upload.single('newAvatar'), (req, res) => {
-    const username = req.cookies.login.username;
-    const fileName = req.file.filename;
-    Users.updateOne({username}, {avatar: fileName}).exec();
-    res.redirect('/settings.html');
+app.post('/update/avatar', async (req, res) => {
+    const username = req.cookies.login.userName;
+    console.log(username);
+    const fileName = req.body.newAvatar;
+    console.log(fileName);
+    const user = await Users.findOne({username}).exec();
+    user.avatar = fileName;
+    await user.save();
+    res.sendStatus(200);
+});
+
+// route for getting the avatar of the user
+app.get('/get/avatar', async (req, res) => {
+    const username = req.cookies.login.userName;
+    const avatar = await Users.findOne({username}).exec();
+    res.send(avatar.avatar);
 });
 
 // post to change the password

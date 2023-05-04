@@ -42,6 +42,7 @@ function Rateandcomment() {
     })
     setRating(0);
     commentRef.current.value = '';
+    window.location.reload();
   }
 
   return (

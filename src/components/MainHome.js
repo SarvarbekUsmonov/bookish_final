@@ -32,10 +32,7 @@ function MainHome(){
       <div id="main-page">
         <div id="text" className="column">
           <p style={{ fontWeight: 500, fontSize: "4em" }}>Bookish</p>
-          <p style={{fontWeight: 300, fontSize: "1.5em"}}>Lorem ipsum dolor sit amet, 
-            consectetur adipiscing elit, sed do eiusmod 
-            tempor incididunt ut labore et dolore magna aliqua. 
-            Tellus elementum sagittis vitae et</p>
+          <p style={{fontWeight: 300, fontSize: "1.5em"}}>Enter a world of words: Our book review website welcomes you with open pages.</p>
         </div>
         <div id="background"><img alt="bacground-img"></img></div>
         <div id="buttons" className="d-flex justify-content-center align-items-center position-absolute bottom-0 start-50 translate-middle-x">

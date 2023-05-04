@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "react-spinkit";
-
+import ImageWithFallback from "./ImageWithFallback"; 
 function ViewBook(props) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -35,8 +35,9 @@ function ViewBook(props) {
       .then((data) => { 
         setData(data);
         setLoading(false);
+        console.log("final Rating" + data.finalRating);
         renderStars(data.finalRating);
-        console.log(data.finalRating); // log the fetched data
+         // log the fetched data
         })
      .catch((error) => console.error(error));
      
@@ -45,7 +46,7 @@ function ViewBook(props) {
   }, [props.id]);
   
   
-
+  const fallbackImageUrl = "https://img.freepik.com/free-photo/book-composition-with-open-book_23-2147690555.jpg";
   if (loading) {
     return (
       <div className="container" style={{margin: "100px auto"}}>
@@ -94,11 +95,13 @@ function ViewBook(props) {
       <div className="card mb-3" style={{ maxWidth: "auto" }}>
         <div className="row">
           <div className="col-md-3">
-            <img
-              src="https://m.media-amazon.com/images/I/41K8NV99juL.jpg"
-              className="img-fluid rounded-start"
-              alt="..."
-            ></img>
+          <ImageWithFallback
+                  inputImageUrl={data.image}
+                  fallbackImageUrl={fallbackImageUrl}
+                  className="card card-img-top"
+                  style={{ marginTop: "10px" }}
+                  alt="book cover"
+                />
           </div>
           <div className="col-md-8">
             <div className="card-body">
@@ -106,7 +109,7 @@ function ViewBook(props) {
               <div className="form-group">
                 <label htmlFor="">Rating</label>
                 {console.log(data)}
-                <div className="">{renderStars(data.rating)}</div>
+                <div className="">{renderStars(data.finalRating)} {data.rating.length}</div>
               </div>
               <p className="card-text">{data.author}</p>
               <p className="card-text">

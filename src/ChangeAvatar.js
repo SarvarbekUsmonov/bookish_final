@@ -20,11 +20,12 @@ const ChangeAvatar = () => {
     try {
       const response = await fetch('http://localhost:4000/update/avatar', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ newAvatar: url }),
-        credentials: 'include',
+        
       });
 
       if (response.ok) {
