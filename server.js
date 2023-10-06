@@ -27,7 +27,7 @@ app.use("/*.html", authenticate);
 app.use(express.static('public_html'));
 app.use(express.json());
 app.use(cors({
-    origin: 'http://67.205.167.183:3000',
+    origin: 'http://167.99.60.236:3000',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -47,7 +47,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // }))
 
 // connection to the database
-const mongoURL = 'mongodb+srv://nurkhatjumabaev:A9zsGZy9geNRz9GH@cluster0.vengoms.mongodb.net/test';
+const mongoURL = 'mongodb+srv://nurkhatjumabaev:3lagUjGyMAbFOtl9@cluster0.hwy0wxf.mongodb.net/';
 mongoose.connect(mongoURL, { useNewUrlParser: true });
 mongoose.connection.on("connected", () => console.log("Connected to MongoDB"))
 mongoose.connection.on("error", (err) => console.log(err))
@@ -612,4 +612,4 @@ app.post('/clear/cookies', (req, res) => {
 });
 
 
-app.listen(port, () => console.log(`Server is running on port http://67.205.167.183:${port}`));
+app.listen(port, () => console.log(`Server is running on port http://167.99.60.236:${port}`));
