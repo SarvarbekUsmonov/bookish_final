@@ -13,7 +13,7 @@ function Post() {
   function post() {
     console.log('getting inside the post function')
     
-    fetch("http://67.205.167.183:4000/post", {
+    fetch("http://167.99.60.236:4000/post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -12,7 +12,7 @@ function Navbar() {
   }
 
   useEffect(() => {
-    fetch("http://67.205.167.183:4000/get/avatar", {
+    fetch("http://167.99.60.236:4000/get/avatar", {
       method: "GET",
       credentials: "include",
       headers: {

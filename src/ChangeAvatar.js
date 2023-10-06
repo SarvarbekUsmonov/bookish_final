@@ -18,7 +18,7 @@ const ChangeAvatar = () => {
     }
 
     try {
-      const response = await fetch('http://67.205.167.183:4000/update/avatar', {
+      const response = await fetch('http://167.99.60.236:4000/update/avatar', {
         method: 'POST',
         credentials: 'include',
         headers: {

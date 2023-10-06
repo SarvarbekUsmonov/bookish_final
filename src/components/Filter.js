@@ -5,7 +5,7 @@ function Filter({ updateBooks }) {
   const [authors, setAuthors] = useState([]);
 
   useEffect(() => {
-    fetch("http://67.205.167.183:4000/getAuthors")
+    fetch("http://167.99.60.236:4000/getAuthors")
       .then((response) => response.json())
       .then((data) => {
         setAuthors(data);
@@ -35,7 +35,7 @@ function Filter({ updateBooks }) {
     }
     const formattedInput = inputRef.current.value.replaceAll(" ", "_")
     console.log(formattedInput)
-    const url = `http://67.205.167.183:4000/filter/${author}/${year}/${genre}/${formattedInput}`;
+    const url = `http://167.99.60.236:4000/filter/${author}/${year}/${genre}/${formattedInput}`;
     console.log(url)
     fetch(url)
       .then((response) => response.json())
@@ -46,7 +46,7 @@ function Filter({ updateBooks }) {
   }
 
   function filter2() {
-    const url = `http://67.205.167.183:4000/filter/${false}/${false}/${false}/${input}`;
+    const url = `http://167.99.60.236:4000/filter/${false}/${false}/${false}/${input}`;
     console.log(url)
     fetch(url)
       .then((response) => response.json())

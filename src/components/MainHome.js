@@ -7,7 +7,7 @@ function MainHome(){
     navigate('/helppage')
   }
   const routeChangePost = () =>{  
-    fetch('http://67.205.167.183:4000/userValid', {
+    fetch('http://167.99.60.236:4000/userValid', {
       method: "GET",
       credentials: "include",
       headers: {
@@ -28,7 +28,7 @@ function MainHome(){
     
   }
   const routeChangeAvatar = () =>{  
-    fetch('http://67.205.167.183:4000/userValid', {
+    fetch('http://167.99.60.236:4000/userValid', {
       method: "GET",
       credentials: "include",
       headers: {

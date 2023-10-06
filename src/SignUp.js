@@ -7,7 +7,7 @@ function SignUp(){
     async function handleSignUp(){
         const username = userRef.current.value;
         const password = passwordRef.current.value;
-        const response = await fetch(`http://67.205.167.183:4000/signup`,  {
+        const response = await fetch(`http://167.99.60.236:4000/signup`,  {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
